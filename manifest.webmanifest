@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "Miya Lab M2",
+  "name": "Miya Lab M3",
   "short_name": "Miya Lab",
-  "description": "Build Miya: Early, Mid, Late; Solo dan War; rekomendasi pembelian sesuai inventori dan draft; gambar offline.",
+  "description": "Build Miya otomatis bertahap mengikuti inventori dan draft, dengan gambar offline.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

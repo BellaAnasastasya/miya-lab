@@ -19,12 +19,12 @@
   const CRITS=['wind','berserker','haas'];
   const VALID_SPELLS=['Inspire','Flicker','Purify'];
   function analyzeDraft(data,enemyNames=[],allyNames=[],options={}){
-    const phase=PHASES.includes(options.phase)?options.phase:'mid';
-    const situation=SITUATIONS.includes(options.situation)?options.situation:'war';
     const lookup=new Map(data.heroes.map(h=>[h.name,h]));
     const enemies=unique(enemyNames).map(n=>lookup.get(n)).filter(h=>h&&h.name!=='Miya').slice(0,5);
     const allies=unique(allyNames).map(n=>lookup.get(n)).filter(h=>h&&h.name!=='Miya'&&!enemies.includes(h)).slice(0,4);
     const owned=unique(Array.isArray(options.owned)?options.owned:[]).filter(id=>data.items[id]).slice(0,6);
+    // Tahap dihitung dari jumlah item lengkap yang ditandai (bukan waktu match).
+    const phase=owned.length<=2?'early':owned.length<=4?'mid':'late';
     const en=k=>sum(enemies,k),al=k=>sum(allies,k);
     const controls=enemies.filter(h=>(h.cc||[]).some(cc=>hardCC.has(cc))).length;
     const suppress=enemies.filter(h=>(h.cc||[]).includes('suppress')).length;
@@ -43,6 +43,8 @@
     const hardTank=tank>=4.2,hardHeal=heal>=3.1,hardPhysical=physicalDanger>=4.1;
     const hardMagic=magicDanger>=4, hardControl=crowd>=5.8;
     const antiTank=hardTank||(tank>=3.6&&enemies.length>=3&&en('S')>=3);
+    // Mode prioritas internal berdasarkan risiko komposisi draft, BUKAN deteksi solo/war aktual.
+    const situation=(dive>=3.6||crowd>=5.3||protection>=3.8)?'war':'solo';
     const signals={heal,tank,dive,physicalDanger,magicDanger,crowd,protection,support:protection,
       controlCount:controls,suppressCount:suppress,hardHeal,hardTank,hardPhysical,hardMagic,
       hardCC:hardControl,antiTank};
@@ -156,8 +158,8 @@
       'Marksman · Fatal / Weapon Master / Quantum Charge';
     const tags=[antiTank?'Lawan tank tebal':path==='crit'?'Critical':'On-hit',hardHeal?'Antiheal':null,
       hardPhysical?'Anti-fisik':null,hardMagic?'Anti-magic':null,hardControl?'CC berat':null,
-      styleLabel(situation),phaseLabel(phase)].filter(Boolean);
-    const plans=Object.fromEntries(PHASES.map(p=>[p,wishFor(p,situation).priority.slice(0,6)]));
+      ].filter(Boolean);
+    const plans={};
     const missing=cur.threat.filter(id=>!order.includes(id));
     const lateSwap=(phase==='late'&&owned.length===6&&owned.some(id=>BOOTS.includes(id)))?
       {from:bootOwned||boot,to:(!order.includes('immortal')?'immortal':null),

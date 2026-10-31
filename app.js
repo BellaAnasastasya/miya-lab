@@ -1,9 +1,9 @@
 'use strict';
-/* Miya Lab M2 — draft, stages, solo/war, owned items, visible offline art downloader. */
+/* Miya Lab M3 — automatic staged purchases, draft signals, owned items, offline art. */
 const DATA=window.MIYA_DATA, byId=id=>document.getElementById(id);
 const H=new Map(DATA.heroes.map(h=>[h.name,h])), I=DATA.items;
 const selected={enemy:[],ally:[]}, iconsReady=new Map();
-const state={phase:'early',situation:'solo',owned:[],gold:'',counterMode:false,offenseSwap:false};
+const state={owned:[],gold:'',counterMode:false,offenseSwap:false};
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slug=s=>s.toLowerCase().replace(/[.'’]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const heroUrls=name=>{
@@ -45,8 +45,6 @@ function loadDraft(){
   }catch(e){}
   try{
     const old=JSON.parse(localStorage.getItem('miya-lab-match-v2')||'{}');
-    if(MiyaLogic.PHASES.includes(old.phase))state.phase=old.phase;
-    if(MiyaLogic.SITUATIONS.includes(old.situation))state.situation=old.situation;
     if(Array.isArray(old.owned))state.owned=[...new Set(old.owned)].filter(id=>I[id]).slice(0,6);
     if(old.gold!==''&&Number.isFinite(Number(old.gold)))state.gold=String(Math.max(0,Math.floor(Number(old.gold))));
     state.counterMode=!!old.counterMode;state.offenseSwap=!!old.offenseSwap;
@@ -121,19 +119,12 @@ function build(){
   const goldText=next&&gold!==null?` <span class="${gold>=next.cost?'enough':'short'}">${gold>=next.cost?'Gold cukup untuk harga item penuh':`Kurang ${nfmt(next.cost-gold)}g dari harga item penuh`}</span>`:'';
   const tipNext=state.owned.length>=6?'<b>6/6 item dimiliki.</b> Jika ingin mengganti, lepas tanda item yang dijual dan pilih penggantinya.':
     next?`<b>Prioritas beli berikutnya:</b> ${esc(next.name)} (${nfmt(next.cost)}g).${goldText}`:'<b>Belum ada item berikutnya.</b>';
-  const planNames=Object.entries(a.plans).map(([p,ids])=>`<div class="phase-plan ${p===state.phase?'is-current':''}"><strong>${MiyaLogic.phaseLabel(p)}</strong><span>${ids.map(id=>esc(I[id].name)).join(' → ')}</span></div>`).join('');
   const ownedGrid=Object.entries(I).map(([id,it])=>`<button type="button" data-own="${esc(id)}" class="ownership ${state.owned.includes(id)?'selected':''}" aria-pressed="${state.owned.includes(id)}">${state.owned.includes(id)?'✓':'＋'} ${esc(it.name)}</button>`).join('');
   const warn=a.missing.length?`<div class="tip"><b>Trade-off slot:</b> ${a.missing.map(id=>esc(I[id].name)).join(', ')} juga cocok menghadapi draft, tetapi ruang item terbatas.</div>`:'';
   const lateSwap=a.lateSwap?.to?`<div class="tip"><b>Opsi late:</b> ${esc(a.lateSwap.reason)} Pengganti yang bisa dipertimbangkan: ${esc(I[a.lateSwap.to].name)}. Bukan auto-swap.</div>`:'';
   const mismatch=a.conflict?'<div class="alert">Inventori mencampur Golden Staff dengan item critical chance. Sinerginya tidak optimal; periksa barang yang sudah dibeli, jangan otomatis mengganti core.</div>':'';
-  const situTips=a.situation==='solo'?(
-    a.phase==='early'?'Solo early: utamakan last hit, clear wave, turret aman dan pantau map. Jangan memaksakan duel sebelum core.':
-    a.phase==='mid'?'Solo mid: manfaatkan duel saat musuh terlihat di map; simpan ultimate untuk lepas CC/kabur, jangan split push buta.':
-    'Solo late: push setelah melihat posisi diver, jangan berjalan sendiri tanpa vision; kematian late bisa menentukan match.'):(
-    a.phase==='early'?'War early: prioritas selamat dan farm, ambil fight hanya jika posisi aman atau tim unggul jumlah.':
-    a.phase==='mid'?'War mid: serang target terdekat dari belakang frontline; aktifkan defensive item sesuai jenis damage dan jangan buka war.':
-    'War late: main front-to-back, jaga jarak dan simpan ultimate untuk reposition/cleanse; satu kali tertangkap bisa kalah war.');
-  result.innerHTML=`<div class="row-title"><b>Build Miya · ${MiyaLogic.phaseLabel(a.phase)}</b><span class="actions"><button id="refresh" class="linkbtn" type="button">⟳ Counter dulu</button><button id="copy" class="linkbtn" type="button">Salin ↗</button></span></div>
+  const situTips='Beli item bertahap sesuai prioritas. Untuk duel atau teamfight, perhatikan posisi, cooldown lawan, vision, dan kapan menggunakan ultimate Miya. Aplikasi tidak bisa mendeteksi war secara langsung.';
+  result.innerHTML=`<div class="row-title"><b>Build Miya · Otomatis Bertahap</b><span class="actions"><button id="refresh" class="linkbtn" type="button">⟳ Counter dulu</button><button id="copy" class="linkbtn" type="button">Salin ↗</button></span></div>
     <div class="chips"><span class="pill">${a.path==='crit'?'Critical':'On-hit anti-tank'}</span>${a.tags.filter(t=>t!=='Critical'&&t!=='On-hit').map(t=>`<span class="pill">${esc(t)}</span>`).join('')}</div>
     ${mismatch}<div class="itemgrid">${items}</div>
     <div class="nextitem">${tipNext}<div class="tip">Sudah beli? Ketuk kartu item (✓). Sisa harga item penuh: <b>${nfmt(a.remainingCost)}g</b>. Komponen yang sudah dibeli belum diperhitungkan.</div></div>
@@ -141,7 +132,6 @@ function build(){
     <div class="chips stats"><span class="pill">AS item +${a.stats.attackSpeed}%</span><span class="pill">Crit item +${a.stats.crit}%</span><span class="pill">Lifesteal item +${a.stats.lifesteal}%</span><span class="pill">Physical ATK item +${a.stats.physicalAttack}</span><span class="pill">Total ${nfmt(a.stats.cost)}g</span></div>
     <div class="micro"><b>Emblem:</b> ${esc(a.emblem)}<div><b>Spell (pilih sebelum match):</b> ${esc(a.spell)}</div><div class="playtip">${esc(situTips)}</div></div>
     <details id="inventory" ${inventoryOpen?'open':''}><summary>Inventori: tandai 16 item yang sudah dibeli (${state.owned.length}/6)</summary><div class="own-grid">${ownedGrid}</div><div class="tip">Pilihan tersimpan di perangkat. Beri tanda hanya untuk item yang benar-benar ada dalam 6 slot Miya.</div></details>
-    <details><summary>Rencana pembelian Early → Mid → Late</summary>${planNames}<div class="tip">Urutan setiap fase merupakan prioritas situasional berdasarkan draft dan kondisi Solo/War. Item yang sudah dibeli tetap dipertahankan; saran late tidak otomatis menjual barang.</div></details>
     <details><summary>Alasan pemilihan item</summary>${a.order.map((id,i)=>`<div class="why"><b>${i+1}. ${esc(I[id].name)}${state.owned.includes(id)?' ✓':''}</b><span>${esc(itemNote(id,a))}</span></div>`).join('')}</details>
     <details><summary>Analisis hero (${selected.enemy.length} musuh + ${selected.ally.length} teman)</summary><div class="tiny-head">Musuh</div>${selected.enemy.map(heroInfo).join('')||'<div class="tip">Belum ada musuh dipilih — build default.</div>'}<div class="tiny-head">Teman</div>${selected.ally.map(heroInfo).join('')||'<div class="tip">Belum ada teman dipilih.</div>'}<div class="tip">Heal ${a.signals.heal.toFixed(1)} · Tank ${a.signals.tank.toFixed(1)} · Dive ${a.signals.dive.toFixed(1)} · Fisik ${a.signals.physicalDanger.toFixed(1)} · Magic ${a.signals.magicDanger.toFixed(1)} · Protection ${a.signals.protection.toFixed(1)}. Skor draft, bukan stat musuh di pertandingan.</div></details>
     ${warn}${lateSwap}<div class="tip">${state.counterMode?'Counter penting diprioritaskan lebih awal, tanpa membuang item yang sudah dibeli.':'Mode core dulu; counter mengikuti urgensi.'} Stat hanya atribut dasar item dari data.js, <b>bukan simulasi DPS/kerusakan nyata</b>. Perhatikan gold, level, armor, efek pasif, durasi fight, dan build musuh yang sebenarnya.</div>`;
@@ -149,7 +139,7 @@ function build(){
   result.querySelectorAll('[data-own]').forEach(el=>el.onclick=()=>toggleOwned(el.dataset.own));
   byId('inventory').ontoggle=e=>{inventoryOpen=e.target.open;};
   byId('refresh').onclick=()=>{state.counterMode=!state.counterMode;saveDraft();build();};
-  latest=`Miya Lab · ${MiyaLogic.phaseLabel(a.phase)} · ${MiyaLogic.styleLabel(a.situation)}\nMusuh: ${selected.enemy.join(', ')||'-'}\nTeman: ${selected.ally.join(', ')||'-'}\nJalur: ${a.path}\n${a.order.map((id,i)=>`${i+1}. ${I[id].name}${state.owned.includes(id)?' [milik]':''}`).join('\n')}\nBeli berikutnya: ${next?.name||'-'}\nSisa gold harga penuh: ${a.remainingCost}\nEmblem: ${a.emblem}\nSpell: ${a.spell}`;
+  latest=`Miya Lab · Build Bertahap Otomatis\nMusuh: ${selected.enemy.join(', ')||'-'}\nTeman: ${selected.ally.join(', ')||'-'}\nJalur: ${a.path}\n${a.order.map((id,i)=>`${i+1}. ${I[id].name}${state.owned.includes(id)?' [milik]':''}`).join('\n')}\nBeli berikutnya: ${next?.name||'-'}\nSisa gold harga penuh: ${a.remainingCost}\nEmblem: ${a.emblem}\nSpell: ${a.spell}`;
   byId('copy').onclick=async()=>{
     try{await navigator.clipboard.writeText(latest);}catch(e){const t=document.createElement('textarea');t.value=latest;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();}
     byId('copy').textContent='Disalin ✓';
@@ -157,10 +147,7 @@ function build(){
   return a;
 }
 function controls(){
-  byId('phase').value=state.phase;byId('situation').value=state.situation;
   byId('gold').value=state.gold;
-  byId('phase').onchange=e=>{state.phase=e.target.value;notice='';saveDraft();build();};
-  byId('situation').onchange=e=>{state.situation=e.target.value;notice='';saveDraft();build();};
   byId('gold').oninput=e=>{state.gold=e.target.value===''?'':String(Math.max(0,Math.floor(Number(e.target.value)||0)));saveDraft();build();};
   byId('clearOwned').onclick=()=>{state.owned=[];notice='';saveDraft();build();};
 }
