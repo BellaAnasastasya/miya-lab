@@ -161,9 +161,7 @@
       ].filter(Boolean);
     const plans={};
     const missing=cur.threat.filter(id=>!order.includes(id));
-    const lateSwap=(phase==='late'&&owned.length===6&&owned.some(id=>BOOTS.includes(id)))?
-      {from:bootOwned||boot,to:(!order.includes('immortal')?'immortal':null),
-        reason:'Pertimbangkan jual boots hanya bila 6 slot penuh, mobilitas aman, dan butuh revive. Jika masih sering berpindah posisi, jangan jual.'}:null;
+    const lateSwap=null;
     return {phase,situation,path,order,stats,spell,emblem,tags,signals,missing,plans,
       next,pending,owned,ownedCost:ownedStats,remainingCost:Math.max(0,totalCost-owned.filter(id=>order.includes(id)).reduce((s,id)=>s+Number(data.items[id].cost||0),0)),
       lateSwap,conflict,priority:cur.priority,options:{counterMode:!!options.counterMode,offenseSwap:!!options.offenseSwap}};
