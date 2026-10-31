@@ -3,7 +3,7 @@
 const DATA=window.MIYA_DATA, byId=id=>document.getElementById(id);
 const H=new Map(DATA.heroes.map(h=>[h.name,h])), I=DATA.items;
 const selected={enemy:[],ally:[]}, iconsReady=new Map();
-const state={owned:[],gold:'',counterMode:false,offenseSwap:false};
+const state={counterMode:false,offenseSwap:false};
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slug=s=>s.toLowerCase().replace(/[.'’]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const heroUrls=name=>{
@@ -45,9 +45,8 @@ function loadDraft(){
   }catch(e){}
   try{
     const old=JSON.parse(localStorage.getItem('miya-lab-match-v2')||'{}');
-    if(Array.isArray(old.owned))state.owned=[...new Set(old.owned)].filter(id=>I[id]).slice(0,6);
-    if(old.gold!==''&&Number.isFinite(Number(old.gold)))state.gold=String(Math.max(0,Math.floor(Number(old.gold))));
-    state.counterMode=!!old.counterMode;state.offenseSwap=!!old.offenseSwap;
+    state.counterMode=!!old.counterMode;
+    state.offenseSwap=!!old.offenseSwap;
   }catch(e){}
 }
 function metaRank(h){return h.tier==='S'?0:h.tier==='A'?1:h.proMeta?2:3;}
@@ -100,57 +99,34 @@ function heroInfo(name){
   const h=H.get(name);return h?`<div class="heroline"><b>${esc(h.name)} <small>${esc(h.tier)}${h.proMeta?' · Pro':''}</small></b><span>${esc(h.kit)}</span><small>CC: ${esc(h.cc.length?h.cc.join(', '):'tidak dominan')} · ${esc(h.role)}</small></div>`:'';
 }
 const nfmt=n=>Number(n).toLocaleString('id-ID');
-let latest='',inventoryOpen=false,helpOpen=false,notice='';
-function toggleOwned(id){
-  if(!I[id])return;
-  if(state.owned.includes(id))state.owned=state.owned.filter(x=>x!==id);
-  else if(state.owned.length>=6){notice='Inventori sudah 6/6. Hapus satu item dulu sebelum menandai pembelian lain.';}
-  else{state.owned.push(id);notice='';}
-  saveDraft();build();
-}
+let latest='';
 function build(){
   const a=MiyaLogic.analyzeDraft(DATA,selected.enemy,selected.ally,state);
-  const result=byId('result'),gold=state.gold===''?null:Number(state.gold);
+  const result=byId('result');
   const items=a.order.map((id,i)=>{
-    const owned=state.owned.includes(id);
-    return `<button type="button" class="item ${i<=2?'must':''} ${owned?'owned':''}" data-item="${esc(id)}" aria-pressed="${owned}" title="${owned?'Batalkan tanda dibeli':'Tandai sudah dibeli'}: ${esc(I[id].name)}"><span class="num">${i+1}</span><span class="owned-flag">${owned?'✓ Milik':'＋ Beli'}</span>${face(itemUrls(id),I[id].name)}<b>${esc(I[id].name)}</b><small>${esc(I[id].desc)}</small></button>`;
+    return `<div class="item ${i<=2?'must':''}"><span class="num">${i+1}</span>${face(itemUrls(id),I[id].name)}<b>${esc(I[id].name)}</b><small>${esc(I[id].desc)}</small></div>`;
   }).join('');
-  const next=a.next?I[a.next]:null;
-  const goldText=next&&gold!==null?` <span class="${gold>=next.cost?'enough':'short'}">${gold>=next.cost?'Gold cukup untuk harga item penuh':`Kurang ${nfmt(next.cost-gold)}g dari harga item penuh`}</span>`:'';
-  const tipNext=state.owned.length>=6?'<b>6/6 item dimiliki.</b> Jika ingin mengganti, lepas tanda item yang dijual dan pilih penggantinya.':
-    next?`<b>Prioritas beli berikutnya:</b> ${esc(next.name)} (${nfmt(next.cost)}g).${goldText}`:'<b>Belum ada item berikutnya.</b>';
-  const ownedGrid=Object.entries(I).map(([id,it])=>`<button type="button" data-own="${esc(id)}" class="ownership ${state.owned.includes(id)?'selected':''}" aria-pressed="${state.owned.includes(id)}">${state.owned.includes(id)?'✓':'＋'} ${esc(it.name)}</button>`).join('');
   const warn=a.missing.length?`<div class="tip"><b>Trade-off slot:</b> ${a.missing.map(id=>esc(I[id].name)).join(', ')} juga cocok menghadapi draft, tetapi ruang item terbatas.</div>`:'';
   const lateSwap=a.lateSwap?.to?`<div class="tip"><b>Opsi late:</b> ${esc(a.lateSwap.reason)} Pengganti yang bisa dipertimbangkan: ${esc(I[a.lateSwap.to].name)}. Bukan auto-swap.</div>`:'';
-  const mismatch=a.conflict?'<div class="alert">Inventori mencampur Golden Staff dengan item critical chance. Sinerginya tidak optimal; periksa barang yang sudah dibeli, jangan otomatis mengganti core.</div>':'';
-  const situTips='Beli item bertahap sesuai prioritas. Untuk duel atau teamfight, perhatikan posisi, cooldown lawan, vision, dan kapan menggunakan ultimate Miya. Aplikasi tidak bisa mendeteksi war secara langsung.';
+  const situTips='Urutan item disusun otomatis berdasarkan komposisi draft. Saat duel atau teamfight, perhatikan posisi, vision, cooldown lawan, dan penggunaan ultimate Miya.';
   result.innerHTML=`<div class="row-title"><b>Build Miya · Otomatis Bertahap</b><span class="actions"><button id="refresh" class="linkbtn" type="button">⟳ Counter dulu</button><button id="copy" class="linkbtn" type="button">Salin ↗</button></span></div>
     <div class="chips"><span class="pill">${a.path==='crit'?'Critical':'On-hit anti-tank'}</span>${a.tags.filter(t=>t!=='Critical'&&t!=='On-hit').map(t=>`<span class="pill">${esc(t)}</span>`).join('')}</div>
-    ${mismatch}<div class="itemgrid">${items}</div>
-    <div class="nextitem">${tipNext}<div class="tip">Sudah beli? Ketuk kartu item (✓). Sisa harga item penuh: <b>${nfmt(a.remainingCost)}g</b>. Komponen yang sudah dibeli belum diperhitungkan.</div></div>
-    ${notice?`<div class="alert">${esc(notice)}</div>`:''}
+    <div class="tip">Urutan build: item 1 dibeli lebih awal, dilanjutkan item 2 sampai item 6.</div>
+    <div class="itemgrid">${items}</div>
     <div class="chips stats"><span class="pill">AS item +${a.stats.attackSpeed}%</span><span class="pill">Crit item +${a.stats.crit}%</span><span class="pill">Lifesteal item +${a.stats.lifesteal}%</span><span class="pill">Physical ATK item +${a.stats.physicalAttack}</span><span class="pill">Total ${nfmt(a.stats.cost)}g</span></div>
     <div class="micro"><b>Emblem:</b> ${esc(a.emblem)}<div><b>Spell (pilih sebelum match):</b> ${esc(a.spell)}</div><div class="playtip">${esc(situTips)}</div></div>
-    <details id="inventory" ${inventoryOpen?'open':''}><summary>Inventori: tandai 16 item yang sudah dibeli (${state.owned.length}/6)</summary><div class="own-grid">${ownedGrid}</div><div class="tip">Pilihan tersimpan di perangkat. Beri tanda hanya untuk item yang benar-benar ada dalam 6 slot Miya.</div></details>
-    <details><summary>Alasan pemilihan item</summary>${a.order.map((id,i)=>`<div class="why"><b>${i+1}. ${esc(I[id].name)}${state.owned.includes(id)?' ✓':''}</b><span>${esc(itemNote(id,a))}</span></div>`).join('')}</details>
+    <details><summary>Alasan pemilihan item</summary>${a.order.map((id,i)=>`<div class="why"><b>${i+1}. ${esc(I[id].name)}</b><span>${esc(itemNote(id,a))}</span></div>`).join('')}</details>
     <details><summary>Analisis hero (${selected.enemy.length} musuh + ${selected.ally.length} teman)</summary><div class="tiny-head">Musuh</div>${selected.enemy.map(heroInfo).join('')||'<div class="tip">Belum ada musuh dipilih — build default.</div>'}<div class="tiny-head">Teman</div>${selected.ally.map(heroInfo).join('')||'<div class="tip">Belum ada teman dipilih.</div>'}<div class="tip">Heal ${a.signals.heal.toFixed(1)} · Tank ${a.signals.tank.toFixed(1)} · Dive ${a.signals.dive.toFixed(1)} · Fisik ${a.signals.physicalDanger.toFixed(1)} · Magic ${a.signals.magicDanger.toFixed(1)} · Protection ${a.signals.protection.toFixed(1)}. Skor draft, bukan stat musuh di pertandingan.</div></details>
     ${warn}${lateSwap}<div class="tip">${state.counterMode?'Counter penting diprioritaskan lebih awal, tanpa membuang item yang sudah dibeli.':'Mode core dulu; counter mengikuti urgensi.'} Stat hanya atribut dasar item dari data.js, <b>bukan simulasi DPS/kerusakan nyata</b>. Perhatikan gold, level, armor, efek pasif, durasi fight, dan build musuh yang sebenarnya.</div>`;
-  result.querySelectorAll('[data-item]').forEach(el=>el.onclick=()=>toggleOwned(el.dataset.item));
-  result.querySelectorAll('[data-own]').forEach(el=>el.onclick=()=>toggleOwned(el.dataset.own));
-  byId('inventory').ontoggle=e=>{inventoryOpen=e.target.open;};
   byId('refresh').onclick=()=>{state.counterMode=!state.counterMode;saveDraft();build();};
-  latest=`Miya Lab · Build Bertahap Otomatis\nMusuh: ${selected.enemy.join(', ')||'-'}\nTeman: ${selected.ally.join(', ')||'-'}\nJalur: ${a.path}\n${a.order.map((id,i)=>`${i+1}. ${I[id].name}${state.owned.includes(id)?' [milik]':''}`).join('\n')}\nBeli berikutnya: ${next?.name||'-'}\nSisa gold harga penuh: ${a.remainingCost}\nEmblem: ${a.emblem}\nSpell: ${a.spell}`;
+  latest=`Miya Lab · Build Adaptif Otomatis\nMusuh: ${selected.enemy.join(', ')||'-'}\nTeman: ${selected.ally.join(', ')||'-'}\nJalur: ${a.path}\nUrutan item:\n${a.order.map((id,i)=>`${i+1}. ${I[id].name}`).join('\n')}\nTotal harga: ${a.stats.cost}g\nEmblem: ${a.emblem}\nSpell: ${a.spell}`;
   byId('copy').onclick=async()=>{
     try{await navigator.clipboard.writeText(latest);}catch(e){const t=document.createElement('textarea');t.value=latest;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();}
     byId('copy').textContent='Disalin ✓';
   };
   return a;
 }
-function controls(){
-  byId('gold').value=state.gold;
-  byId('gold').oninput=e=>{state.gold=e.target.value===''?'':String(Math.max(0,Math.floor(Number(e.target.value)||0)));saveDraft();build();};
-  byId('clearOwned').onclick=()=>{state.owned=[];notice='';saveDraft();build();};
-}
+
 function initialize(){
   const valid=DATA&&DATA.heroes.length===133&&DATA.heroCount===133&&Object.keys(I).length===16&&DATA.heroes.every(h=>h.kit&&h.role&&Array.isArray(h.cc)&&h.traits);
   if(!valid){byId('bootMsg').textContent='Database bermasalah. Periksa data.js';byId('skip').style.display='block';return;}
@@ -158,7 +134,7 @@ function initialize(){
   for(const type of ['enemy','ally']){
     byId(type+'Search').addEventListener('input',()=>renderTeam(type));renderTeam(type);
   }
-  controls();build();
+  build();
   byId('progress').style.width='100%';byId('bootMsg').textContent='Database dan icon fallback lokal siap.';
   byId('bootCount').textContent='Gambar asli bisa disimpan untuk offline lewat tombol di bawah.';
   const enter=()=>document.body.classList.add('ready');byId('skip').onclick=enter;
