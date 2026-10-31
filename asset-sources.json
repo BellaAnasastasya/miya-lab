@@ -1,0 +1,602 @@
+{
+  "hero_images": {
+    "Aamon": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/aamon.png",
+      "https://mlbbhub.com/images/heroes/aamon.png"
+    ],
+    "Akai": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/akai.png",
+      "https://mlbbhub.com/images/heroes/akai.png"
+    ],
+    "Aldous": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/aldous.png",
+      "https://mlbbhub.com/images/heroes/aldous.png"
+    ],
+    "Alice": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/alice.png",
+      "https://mlbbhub.com/images/heroes/alice.png"
+    ],
+    "Alpha": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/alpha.png",
+      "https://mlbbhub.com/images/heroes/alpha.png"
+    ],
+    "Alucard": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/alucard.png",
+      "https://mlbbhub.com/images/heroes/alucard.png"
+    ],
+    "Angela": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/angela.png",
+      "https://mlbbhub.com/images/heroes/angela.png"
+    ],
+    "Argus": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/argus.png",
+      "https://mlbbhub.com/images/heroes/argus.png"
+    ],
+    "Arlott": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/arlott.png",
+      "https://mlbbhub.com/images/heroes/arlott.png"
+    ],
+    "Atlas": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/atlas.png",
+      "https://mlbbhub.com/images/heroes/atlas.png"
+    ],
+    "Aulus": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/aulus.png",
+      "https://mlbbhub.com/images/heroes/aulus.png"
+    ],
+    "Aurora": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/aurora.png",
+      "https://mlbbhub.com/images/heroes/aurora.png"
+    ],
+    "Badang": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/badang.png",
+      "https://mlbbhub.com/images/heroes/badang.png"
+    ],
+    "Balmond": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/balmond.png",
+      "https://mlbbhub.com/images/heroes/balmond.png"
+    ],
+    "Bane": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/bane.png",
+      "https://mlbbhub.com/images/heroes/bane.png"
+    ],
+    "Barats": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/barats.png",
+      "https://mlbbhub.com/images/heroes/barats.png"
+    ],
+    "Baxia": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/baxia.png",
+      "https://mlbbhub.com/images/heroes/baxia.png"
+    ],
+    "Beatrix": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/beatrix.png",
+      "https://mlbbhub.com/images/heroes/beatrix.png"
+    ],
+    "Belerick": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/belerick.png",
+      "https://mlbbhub.com/images/heroes/belerick.png"
+    ],
+    "Benedetta": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/benedetta.png",
+      "https://mlbbhub.com/images/heroes/benedetta.png"
+    ],
+    "Brody": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/brody.png",
+      "https://mlbbhub.com/images/heroes/brody.png"
+    ],
+    "Bruno": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/bruno.png",
+      "https://mlbbhub.com/images/heroes/bruno.png"
+    ],
+    "Carmilla": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/carmilla.png",
+      "https://mlbbhub.com/images/heroes/carmilla.png"
+    ],
+    "Cecilion": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/cecilion.png",
+      "https://mlbbhub.com/images/heroes/cecilion.png"
+    ],
+    "Chang'e": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/chang27e.png",
+      "https://mlbbhub.com/images/heroes/change.png"
+    ],
+    "Chip": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/chip.png",
+      "https://mlbbhub.com/images/heroes/chip.png"
+    ],
+    "Chou": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/chou.png",
+      "https://mlbbhub.com/images/heroes/chou.png"
+    ],
+    "Cici": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/cici.png",
+      "https://mlbbhub.com/images/heroes/cici.png"
+    ],
+    "Claude": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/claude.png",
+      "https://mlbbhub.com/images/heroes/claude.png"
+    ],
+    "Clint": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/clint.png",
+      "https://mlbbhub.com/images/heroes/clint.png"
+    ],
+    "Cyclops": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/cyclops.png",
+      "https://mlbbhub.com/images/heroes/cyclops.png"
+    ],
+    "Diggie": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/diggie.png",
+      "https://mlbbhub.com/images/heroes/diggie.png"
+    ],
+    "Dyrroth": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/dyrroth.png",
+      "https://mlbbhub.com/images/heroes/dyrroth.png"
+    ],
+    "Edith": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/edith.png",
+      "https://mlbbhub.com/images/heroes/edith.png"
+    ],
+    "Esmeralda": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/esmeralda.png",
+      "https://mlbbhub.com/images/heroes/esmeralda.png"
+    ],
+    "Estes": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/estes.png",
+      "https://mlbbhub.com/images/heroes/estes.png"
+    ],
+    "Eudora": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/eudora.png",
+      "https://mlbbhub.com/images/heroes/eudora.png"
+    ],
+    "Fanny": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/fanny.png",
+      "https://mlbbhub.com/images/heroes/fanny.png"
+    ],
+    "Faramis": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/faramis.png",
+      "https://mlbbhub.com/images/heroes/faramis.png"
+    ],
+    "Floryn": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/floryn.png",
+      "https://mlbbhub.com/images/heroes/floryn.png"
+    ],
+    "Franco": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/franco.png",
+      "https://mlbbhub.com/images/heroes/franco.png"
+    ],
+    "Fredrinn": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/fredrinn.png",
+      "https://mlbbhub.com/images/heroes/fredrinn.png"
+    ],
+    "Freya": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/freya.png",
+      "https://mlbbhub.com/images/heroes/freya.png"
+    ],
+    "Gatotkaca": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/gatotkaca.png",
+      "https://mlbbhub.com/images/heroes/gatotkaca.png"
+    ],
+    "Gloo": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/gloo.png",
+      "https://mlbbhub.com/images/heroes/gloo.png"
+    ],
+    "Gord": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/gord.png",
+      "https://mlbbhub.com/images/heroes/gord.png"
+    ],
+    "Granger": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/granger.png",
+      "https://mlbbhub.com/images/heroes/granger.png"
+    ],
+    "Grock": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/grock.png",
+      "https://mlbbhub.com/images/heroes/grock.png"
+    ],
+    "Guinevere": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/guinevere.png",
+      "https://mlbbhub.com/images/heroes/guinevere.png"
+    ],
+    "Gusion": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/gusion.png",
+      "https://mlbbhub.com/images/heroes/gusion.png"
+    ],
+    "Hanabi": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/hanabi.png",
+      "https://mlbbhub.com/images/heroes/hanabi.png"
+    ],
+    "Hanzo": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/hanzo.png",
+      "https://mlbbhub.com/images/heroes/hanzo.png"
+    ],
+    "Harith": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/harith.png",
+      "https://mlbbhub.com/images/heroes/harith.png"
+    ],
+    "Harley": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/harley.png",
+      "https://mlbbhub.com/images/heroes/harley.png"
+    ],
+    "Hayabusa": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/hayabusa.png",
+      "https://mlbbhub.com/images/heroes/hayabusa.png"
+    ],
+    "Helcurt": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/helcurt.png",
+      "https://mlbbhub.com/images/heroes/helcurt.png"
+    ],
+    "Hilda": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/hilda.png",
+      "https://mlbbhub.com/images/heroes/hilda.png"
+    ],
+    "Hirara": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/hirara.png",
+      "https://mlbbhub.com/images/heroes/hirara.png"
+    ],
+    "Hylos": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/hylos.png",
+      "https://mlbbhub.com/images/heroes/hylos.png"
+    ],
+    "Irithel": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/irithel.png",
+      "https://mlbbhub.com/images/heroes/irithel.png"
+    ],
+    "Ixia": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/ixia.png",
+      "https://mlbbhub.com/images/heroes/ixia.png"
+    ],
+    "Jawhead": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/jawhead.png",
+      "https://mlbbhub.com/images/heroes/jawhead.png"
+    ],
+    "Johnson": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/johnson.png",
+      "https://mlbbhub.com/images/heroes/johnson.png"
+    ],
+    "Joy": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/joy.png",
+      "https://mlbbhub.com/images/heroes/joy.png"
+    ],
+    "Julian": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/julian.png",
+      "https://mlbbhub.com/images/heroes/julian.png"
+    ],
+    "Kadita": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/kadita.png",
+      "https://mlbbhub.com/images/heroes/kadita.png"
+    ],
+    "Kagura": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/kagura.png",
+      "https://mlbbhub.com/images/heroes/kagura.png"
+    ],
+    "Kaja": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/kaja.png",
+      "https://mlbbhub.com/images/heroes/kaja.png"
+    ],
+    "Kalea": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/kalea.png",
+      "https://mlbbhub.com/images/heroes/kalea.png"
+    ],
+    "Karina": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/karina.png",
+      "https://mlbbhub.com/images/heroes/karina.png"
+    ],
+    "Karrie": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/karrie.png",
+      "https://mlbbhub.com/images/heroes/karrie.png"
+    ],
+    "Khaleed": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/khaleed.png",
+      "https://mlbbhub.com/images/heroes/khaleed.png"
+    ],
+    "Khufra": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/khufra.png",
+      "https://mlbbhub.com/images/heroes/khufra.png"
+    ],
+    "Kimmy": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/kimmy.png",
+      "https://mlbbhub.com/images/heroes/kimmy.png"
+    ],
+    "Lancelot": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/lancelot.png",
+      "https://mlbbhub.com/images/heroes/lancelot.png"
+    ],
+    "Lapu-Lapu": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/lapu-lapu.png",
+      "https://mlbbhub.com/images/heroes/lapu-lapu.png"
+    ],
+    "Layla": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/layla.png",
+      "https://mlbbhub.com/images/heroes/layla.png"
+    ],
+    "Leomord": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/leomord.png",
+      "https://mlbbhub.com/images/heroes/leomord.png"
+    ],
+    "Lesley": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/lesley.png",
+      "https://mlbbhub.com/images/heroes/lesley.png"
+    ],
+    "Ling": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/ling.png",
+      "https://mlbbhub.com/images/heroes/ling.png"
+    ],
+    "Lolita": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/lolita.png",
+      "https://mlbbhub.com/images/heroes/lolita.png"
+    ],
+    "Lukas": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/lukas.png",
+      "https://mlbbhub.com/images/heroes/lukas.png"
+    ],
+    "Lunox": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/lunox.png",
+      "https://mlbbhub.com/images/heroes/lunox.png"
+    ],
+    "Luo Yi": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/luo_yi.png",
+      "https://mlbbhub.com/images/heroes/luo-yi.png"
+    ],
+    "Lylia": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/lylia.png",
+      "https://mlbbhub.com/images/heroes/lylia.png"
+    ],
+    "Marcel": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/marcel.png",
+      "https://mlbbhub.com/images/heroes/marcel.png"
+    ],
+    "Martis": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/martis.png",
+      "https://mlbbhub.com/images/heroes/martis.png"
+    ],
+    "Masha": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/masha.png",
+      "https://mlbbhub.com/images/heroes/masha.png"
+    ],
+    "Mathilda": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/mathilda.png",
+      "https://mlbbhub.com/images/heroes/mathilda.png"
+    ],
+    "Melissa": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/melissa.png",
+      "https://mlbbhub.com/images/heroes/melissa.png"
+    ],
+    "Minotaur": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/minotaur.png",
+      "https://mlbbhub.com/images/heroes/minotaur.png"
+    ],
+    "Minsitthar": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/minsitthar.png",
+      "https://mlbbhub.com/images/heroes/minsitthar.png"
+    ],
+    "Miya": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/miya.png",
+      "https://mlbbhub.com/images/heroes/miya.png"
+    ],
+    "Moskov": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/moskov.png",
+      "https://mlbbhub.com/images/heroes/moskov.png"
+    ],
+    "Nana": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/nana.png",
+      "https://mlbbhub.com/images/heroes/nana.png"
+    ],
+    "Natalia": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/natalia.png",
+      "https://mlbbhub.com/images/heroes/natalia.png"
+    ],
+    "Natan": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/natan.png",
+      "https://mlbbhub.com/images/heroes/natan.png"
+    ],
+    "Nolan": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/nolan.png",
+      "https://mlbbhub.com/images/heroes/nolan.png"
+    ],
+    "Novaria": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/novaria.png",
+      "https://mlbbhub.com/images/heroes/novaria.png"
+    ],
+    "Obsidia": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/obsidia.png",
+      "https://mlbbhub.com/images/heroes/obsidia.png"
+    ],
+    "Odette": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/odette.png",
+      "https://mlbbhub.com/images/heroes/odette.png"
+    ],
+    "Paquito": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/paquito.png",
+      "https://mlbbhub.com/images/heroes/paquito.png"
+    ],
+    "Pharsa": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/pharsa.png",
+      "https://mlbbhub.com/images/heroes/pharsa.png"
+    ],
+    "Phoveus": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/phoveus.png",
+      "https://mlbbhub.com/images/heroes/phoveus.png"
+    ],
+    "Popol and Kupa": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/popol_and_kupa.png",
+      "https://mlbbhub.com/images/heroes/popol-and-kupa.png"
+    ],
+    "Rafaela": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/rafaela.png",
+      "https://mlbbhub.com/images/heroes/rafaela.png"
+    ],
+    "Roger": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/roger.png",
+      "https://mlbbhub.com/images/heroes/roger.png"
+    ],
+    "Ruby": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/ruby.png",
+      "https://mlbbhub.com/images/heroes/ruby.png"
+    ],
+    "Saber": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/saber.png",
+      "https://mlbbhub.com/images/heroes/saber.png"
+    ],
+    "Selena": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/selena.png",
+      "https://mlbbhub.com/images/heroes/selena.png"
+    ],
+    "Silvanna": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/silvanna.png",
+      "https://mlbbhub.com/images/heroes/silvanna.png"
+    ],
+    "Sora": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/sora.png",
+      "https://mlbbhub.com/images/heroes/sora.png"
+    ],
+    "Sun": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/sun.png",
+      "https://mlbbhub.com/images/heroes/sun.png"
+    ],
+    "Suyou": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/suyou.png",
+      "https://mlbbhub.com/images/heroes/suyou.png"
+    ],
+    "Terizla": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/terizla.png",
+      "https://mlbbhub.com/images/heroes/terizla.png"
+    ],
+    "Thamuz": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/thamuz.png",
+      "https://mlbbhub.com/images/heroes/thamuz.png"
+    ],
+    "Tigreal": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/tigreal.png",
+      "https://mlbbhub.com/images/heroes/tigreal.png"
+    ],
+    "Uranus": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/uranus.png",
+      "https://mlbbhub.com/images/heroes/uranus.png"
+    ],
+    "Vale": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/vale.png",
+      "https://mlbbhub.com/images/heroes/vale.png"
+    ],
+    "Valentina": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/valentina.png",
+      "https://mlbbhub.com/images/heroes/valentina.png"
+    ],
+    "Valir": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/valir.png",
+      "https://mlbbhub.com/images/heroes/valir.png"
+    ],
+    "Vexana": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/vexana.png",
+      "https://mlbbhub.com/images/heroes/vexana.png"
+    ],
+    "Wanwan": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/wanwan.png",
+      "https://mlbbhub.com/images/heroes/wanwan.png"
+    ],
+    "X.Borg": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/xborg.png",
+      "https://mlbbhub.com/images/heroes/xborg.png"
+    ],
+    "Xavier": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/xavier.png",
+      "https://mlbbhub.com/images/heroes/xavier.png"
+    ],
+    "Yi Sun-shin": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/yi_sun-shin.png",
+      "https://mlbbhub.com/images/heroes/yi-sun-shin.png"
+    ],
+    "Yin": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/yin.png",
+      "https://mlbbhub.com/images/heroes/yin.png"
+    ],
+    "Yu Zhong": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/yu_zhong.png",
+      "https://mlbbhub.com/images/heroes/yu-zhong.png"
+    ],
+    "Yve": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/yve.png",
+      "https://mlbbhub.com/images/heroes/yve.png"
+    ],
+    "Zetian": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/zetian.png",
+      "https://mlbbhub.com/images/heroes/zetian.png"
+    ],
+    "Zhask": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/zhask.png",
+      "https://mlbbhub.com/images/heroes/zhask.png"
+    ],
+    "Zhuxin": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/zhuxin.png",
+      "https://mlbbhub.com/images/heroes/zhuxin.png"
+    ],
+    "Zilong": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/images-hero/zilong.png",
+      "https://mlbbhub.com/images/heroes/zilong.png"
+    ]
+  },
+  "item_images": {
+    "swift": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/swift_boots.png",
+      "https://mlbbhub.com/images/items/swift-boots.png"
+    ],
+    "tough": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/tough_boots.png",
+      "https://mlbbhub.com/images/items/tough-boots.png"
+    ],
+    "warrior": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/warrior_boots.png",
+      "https://mlbbhub.com/images/items/warrior-boots.png"
+    ],
+    "wind": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/windtalker.png",
+      "https://mlbbhub.com/images/items/windtalker.png"
+    ],
+    "berserker": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/berserkers_fury.png",
+      "https://mlbbhub.com/images/items/berserkers-fury.png"
+    ],
+    "haas": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/haass_claws.png",
+      "https://mlbbhub.com/images/items/haas-claws.png"
+    ],
+    "gun": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/malefic_gun.png",
+      "https://mlbbhub.com/images/items/malefic-gun.png"
+    ],
+    "blade": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/blade_of_despair.png",
+      "https://mlbbhub.com/images/items/blade-of-despair.png"
+    ],
+    "corrosion": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/corrosion_scythe.png",
+      "https://mlbbhub.com/images/items/corrosion-scythe.png"
+    ],
+    "dhs": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/demon_hunter_sword.png",
+      "https://mlbbhub.com/images/items/demon-hunter-sword.png"
+    ],
+    "golden": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/golden_staff.png",
+      "https://mlbbhub.com/images/items/golden-staff.png"
+    ],
+    "roar": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/malefic_roar.png",
+      "https://mlbbhub.com/images/items/malefic-roar.png"
+    ],
+    "sea": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/sea_halberd.png",
+      "https://mlbbhub.com/images/items/sea-halberd.png"
+    ],
+    "nature": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/wind_of_nature.png",
+      "https://mlbbhub.com/images/items/wind-of-nature.png"
+    ],
+    "meteor": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/rose_gold_meteor.png",
+      "https://mlbbhub.com/images/items/rose-gold-meteor.png"
+    ],
+    "immortal": [
+      "https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-equipment/immortality.png",
+      "https://mlbbhub.com/images/items/immortality.png"
+    ]
+  }
+}
