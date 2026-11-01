@@ -119,15 +119,46 @@
       }
       const forbidden=path==='onhit'?new Set(CRITS):new Set(['golden']);
       wish=unique(wish.filter(id=>data.items[id]&&!forbidden.has(id)));
-      // Protect minimum damage cores from an overly aggressive counter-first ordering.
+
+      // Amankan item core agar tetap masuk 6 slot.
       const must=path==='onhit'?['corrosion','dhs','golden']:['wind','berserker'];
       for(const id of must){
         if(wish.indexOf(id)>=6){
           const replace=wish.slice(1,6).findLastIndex(x=>!must.includes(x));
-          if(replace>=0){wish.splice(replace+1,1);wish.splice(Math.min(5,wish.length),0,id);}
+          if(replace>=0){
+            wish.splice(replace+1,1);
+            wish.splice(Math.min(5,wish.length),0,id);
+          }
         }
       }
+
+      // Wind of Nature tidak boleh muncul pada slot 1 atau 2.
+      // Ancaman ekstrem: paling cepat slot 3.
+      // Ancaman tinggi: paling cepat slot 4.
+      // Normal: paling cepat slot 5.
+      const wonIndex=wish.indexOf('nature');
+      if(wonIndex!==-1){
+        wish.splice(wonIndex,1);
+
+        const wonSlot=physicalDanger>=8?2:hardPhysical?3:4;
+        wish.splice(Math.min(wonSlot,wish.length),0,'nature');
+      }
+
+      // Pastikan core tetap masuk 6 slot setelah penyesuaian WON.
+      for(const id of must){
+        if(wish.indexOf(id)>=6){
+          const replace=wish.slice(1,6).findLastIndex(
+            x=>!must.includes(x)&&x!=='nature'
+          );
+          if(replace>=0){
+            wish.splice(replace+1,1);
+            wish.splice(Math.min(5,wish.length),0,id);
+          }
+        }
+      }
+
       return {order:wish.slice(0,6),priority:wish,defense,threat,emergency};
+
     }
     const cur=wishFor(phase,situation);
     const order=cur.order;
