@@ -118,8 +118,9 @@ function itemNote(id,a){
   };return notes[id]||I[id].why;
 }
 function loadoutCard(kind,title,sub,urls){
-  return `<div class="loadout-card">${artFace(urls,title,true)}<div><small>${esc(kind)}</small><b>${esc(title)}</b>${sub?`<span>${esc(sub)}</span>`:''}</div></div>`;
+  return `<div class="loadout-card">${artFace(urls,title,true).replace(/<span class="letters">.*?<\/span>/,'')}<div><small>${esc(kind)}</small><b>${esc(title)}</b>${sub?`<span>${esc(sub)}</span>`:''}</div></div>`;
 }
+
 function normalizeEmblem(text){
   const parts=String(text||'').split('·').map(s=>s.trim()).filter(Boolean);
   return {title:parts[0]||String(text||'Emblem'),sub:parts.slice(1).join(' / ')};
