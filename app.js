@@ -1,5 +1,5 @@
 "use strict";
-/* Miya Lab M5 — compact adaptive build + emblem/spell icons + smarter offline panel. */
+/* Miya Lab M6 — compact adaptive build + real emblem/spell art below items. */
 const DATA=window.MIYA_DATA, byId=id=>document.getElementById(id);
 const H=new Map(DATA.heroes.map(h=>[h.name,h])), I=DATA.items;
 const selected={enemy:[],ally:[]}, iconsReady=new Map();
@@ -20,13 +20,41 @@ const LOCAL_ICONS={
   Flicker:svgUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8fd8ff"/><stop offset="1" stop-color="#4f83ff"/></linearGradient></defs><rect rx="14" width="64" height="64" fill="#10192e"/><circle cx="32" cy="32" r="21" fill="url(#g)"/><path d="M24 18l11 0-6 12h11L28 46l5-12H22z" fill="#fff" fill-opacity=".94"/></svg>`),
   Purify:svgUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c3f9ff"/><stop offset="1" stop-color="#69d6ff"/></linearGradient></defs><rect rx="14" width="64" height="64" fill="#102631"/><circle cx="32" cy="32" r="21" fill="url(#g)"/><path d="M32 18c6 8 11 14 11 20a11 11 0 1 1-22 0c0-6 5-12 11-20Z" fill="#fff" fill-opacity=".92"/><path d="M27 39c2 3 8 3 10-1" stroke="#3cb3e8" stroke-width="3" stroke-linecap="round"/></svg>`)
 };
+const EMBLEM_URLS={
+  Marksman:[
+    'https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-emblem/marksman.png',
+    'https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-emblem/marksman_emblem.png',
+    'https://mlbbhub.com/images/emblems/marksman.png',
+    'https://mobile-legends.fandom.com/wiki/Special:Redirect/file/Marksman_Emblem.png',
+    LOCAL_ICONS.emblem
+  ]
+};
+const SPELL_URLS={
+  Inspire:[
+    'https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-battle-spell/inspire.png',
+    'https://mlbbhub.com/images/spells/inspire.png',
+    'https://mobile-legends.fandom.com/wiki/Special:Redirect/file/Battle_Spell_Inspire.png',
+    LOCAL_ICONS.Inspire
+  ],
+  Flicker:[
+    'https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-battle-spell/flicker.png',
+    'https://mlbbhub.com/images/spells/flicker.png',
+    'https://mobile-legends.fandom.com/wiki/Special:Redirect/file/Battle_Spell_Flicker.png',
+    LOCAL_ICONS.Flicker
+  ],
+  Purify:[
+    'https://raw.githubusercontent.com/Ceplin03/database-mlbb.Mobile-Legends-Bang-Bang/master/logo-battle-spell/purify.png',
+    'https://mlbbhub.com/images/spells/purify.png',
+    'https://mobile-legends.fandom.com/wiki/Special:Redirect/file/Battle_Spell_Purify.png',
+    LOCAL_ICONS.Purify
+  ]
+};
+const emblemUrls=name=>EMBLEM_URLS[name]||[LOCAL_ICONS.emblem];
+const spellUrls=name=>SPELL_URLS[name]||[LOCAL_ICONS.Flicker];
 function artFace(urls,name,small=false){
   const primary=iconsReady.get(name)||urls[0];
   const all=[primary,...urls.filter(u=>u!==primary)];
   return `<span class="face ${small?'sm':''}"><img alt="${esc(name)}" src="${esc(all[0])}" data-urls="${esc(encodeURIComponent(JSON.stringify(all)))}" data-next="1" loading="lazy" referrerpolicy="no-referrer" onerror="retryImage(this)"><span class="letters">${esc(name.slice(0,2).toUpperCase())}</span></span>`;
-}
-function staticFace(url,name,small=false){
-  return `<span class="face ${small?'sm':''}"><img alt="${esc(name)}" src="${esc(url)}"><span class="letters">${esc(name.slice(0,2).toUpperCase())}</span></span>`;
 }
 window.retryImage=img=>{
   let all=[];
@@ -89,8 +117,8 @@ function itemNote(id,a){
     roar:`Penetrasi vs tank ${level(s.tank)}.`,sea:`Antiheal ${level(s.heal)}.`,nature:'Tahan burst fisik.',meteor:'Tahan burst magic.',immortal:'Safety late game.'
   };return notes[id]||I[id].why;
 }
-function loadoutCard(kind,title,sub,icon){
-  return `<div class="loadout-card">${staticFace(icon,title,true)}<div><small>${esc(kind)}</small><b>${esc(title)}</b>${sub?`<span>${esc(sub)}</span>`:''}</div></div>`;
+function loadoutCard(kind,title,sub,urls){
+  return `<div class="loadout-card">${artFace(urls,title,true)}<div><small>${esc(kind)}</small><b>${esc(title)}</b>${sub?`<span>${esc(sub)}</span>`:''}</div></div>`;
 }
 function normalizeEmblem(text){
   const parts=String(text||'').split('·').map(s=>s.trim()).filter(Boolean);
@@ -105,8 +133,8 @@ function build(){
   const warn=a.missing.length?`<div class="tip">Alt: ${a.missing.slice(0,3).map(id=>esc(I[id].name)).join(', ')}</div>`:'';
   result.innerHTML=`<div class="row-title"><b>Build Miya</b><span class="actions"><button id="refresh" class="linkbtn" type="button">⟳ Counter</button><button id="copy" class="linkbtn" type="button">Salin ↗</button></span></div>
     <div class="chips"><span class="pill">${a.path==='crit'?'Critical':'On-hit'}</span>${a.tags.filter(t=>t!=='Critical'&&t!=='On-hit').slice(0,3).map(t=>`<span class="pill">${esc(t)}</span>`).join('')}</div>
-    <div class="loadout-row">${loadoutCard('Emblem',emblem.title,emblem.sub,LOCAL_ICONS.emblem)}${loadoutCard('Spell',a.spell,'',LOCAL_ICONS[a.spell]||LOCAL_ICONS.Flicker)}</div>
     <div class="itemgrid">${items}</div>
+    <div class="loadout-row">${loadoutCard('Emblem',emblem.title,emblem.sub,emblemUrls(emblem.title))}${loadoutCard('Spell',a.spell,'',spellUrls(a.spell))}</div>
     <div class="chips stats"><span class="pill">AS +${a.stats.attackSpeed}%</span><span class="pill">Crit +${a.stats.crit}%</span><span class="pill">LS +${a.stats.lifesteal}%</span><span class="pill">ATK +${a.stats.physicalAttack}</span><span class="pill">${Number(a.stats.cost).toLocaleString('id-ID')}g</span></div>
     ${warn}<details><summary>Catatan item</summary>${a.order.map((id,i)=>`<div class="why"><b>${i+1}. ${esc(I[id].name)}</b><span>${esc(itemNote(id,a))}</span></div>`).join('')}</details>
     <div class="tip">${state.counterMode?'Counter diprioritaskan lebih awal.':'Core dulu, counter mengikuti draft.'}</div>`;
@@ -133,6 +161,10 @@ function initialize(){
 const OFFLINE_ART='miya-lab-art-v3';
 const ART_TASKS=()=>[
   ...Object.entries(I).map(([id,o])=>({name:o.name,urls:itemUrls(id).slice(0,-1)})),
+  {name:'Marksman',urls:emblemUrls('Marksman').slice(0,-1)},
+  {name:'Inspire',urls:spellUrls('Inspire').slice(0,-1)},
+  {name:'Flicker',urls:spellUrls('Flicker').slice(0,-1)},
+  {name:'Purify',urls:spellUrls('Purify').slice(0,-1)},
   ...DATA.heroes.filter(h=>h.name==='Miya').map(h=>({name:h.name,urls:heroUrls(h.name).slice(0,-1)})),
   ...DATA.heroes.filter(h=>h.name!=='Miya').map(h=>({name:h.name,urls:heroUrls(h.name).slice(0,-1)}))
 ];
